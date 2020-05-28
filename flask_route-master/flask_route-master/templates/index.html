@@ -1,0 +1,98 @@
+
+<html>
+    <head>
+        <title>Pagina Inicial</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .itens img{
+               width: 100%;
+               width: 130px;
+               height: 80;
+               overflow: hidden;
+                
+
+            }
+            .itens{
+                text-align: center;
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                background-color: #888;
+                color: #fff;
+                padding: 10px;
+
+            }
+            #items_amostra{
+                margin-top: 100px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            #items_amostra a{
+                text-decoration: none;
+            }
+            body{
+    
+                min-height: 100vh;
+            }
+            a{
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="items_amostra">
+            {% for item, valor, img,desc in lista %}
+                <a href="/itens/{{loop.index0}}">
+                    <span>
+                        <div class="itens">
+                            <img src={{img}}>
+                            {{item}}
+                            Valor: R${{valor}}
+                        </div>
+                    </span>
+                </a>
+            {%endfor%}
+        </div>
+        <div class="w3-container">
+            <h2>Tabela de valores</h2>
+          
+            <table class="w3-table-all">
+              <thead>
+                <tr class="w3-blue">
+                  <th>Item</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+                {% for item, valor, img, desc in lista %}
+                    {% if valor > 5.0 %}  
+                        <tr>
+                            <td>
+                                <a href="/itens/{{loop.index0}}">
+                                    {{item}}
+                                </a>
+                            </td>
+                            <td class="w3-red">{{valor}}</td>
+                        </tr>
+                    {%else%}
+                        <tr>
+                            <td>
+                                <a href="/itens/{{loop.index0}}">
+                                    {{item}}
+                                </a>
+                            </td>
+                            <td>{{valor}}</td>
+                        </tr>
+                    {% endif %}
+                {%endfor%}
+            </table>
+          </div>
+          
+    </body>
+</html>
